@@ -1,0 +1,63 @@
+runtime: php81  # version of php
+env: standard     # set app engine env to standard
+
+runtime_config:
+  document_root: .
+
+# for detecting static files in the public folder
+handlers:
+  - url: /(.*\.(gif|png|jpg|css|js))$
+    static_files: public/\1
+    upload: public/.*\.(gif|png|jpg|css|js)$
+  - url: /.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto
+  - url: /robots.txt
+    static_files: public/robots.txt
+    upload: public/robots.txt
+  - url: /favicon.ico
+    static_files: public/favicon.ico
+    upload: public/favicon.ico
+
+env_variables:
+  APP_KEY: base64:0IycZN5rIfJ8Qf95txnEyvuzRg3zTazylgyuzp5q1ko=
+  APP_STORAGE: localhost
+  VIEW_COMPILED_PATH: /tmp
+
+
+  DB_CONNECTION: mysql
+  DB_HOST: 127.0.0.1
+  DB_PORT: 3306
+  DB_DATABASE: seal-sub
+  DB_USERNAME: root
+  DB_PASSWORD: "5-@44...vermA"
+  DB_SOCKET: '/cloudsql/hubspotintegration-388418:us-central1:seal-database'
+
+  APP_NAME: "Seal subscription"
+  APP_ENV: production
+  APP_DEBUG: true
+  APP_URL: ""
+  ASSET_URL: ""
+
+  SESSION_DRIVER: cookie
+
+  QUEUE_CONNECTION: database
+
+  MAIL_MAILER: smtp
+  MAIL_HOST: ""
+  MAIL_PORT: 465
+  MAIL_USERNAME: ""
+  MAIL_PASSWORD: ""
+  MAIL_ENCRYPTION: ssl
+  MAIL_FROM_ADDRESS:
+  MAIL_FROM_NAME: "Google cloud vision"
+
+  PUSHER_APP_ID:
+  PUSHER_APP_KEY:
+  PUSHER_APP_SECRET:
+  PUSHER_APP_CLUSTER: mt1
+
+beta_settings:
+  cloud_sql_instances: "hubspotintegration-388418:us-central1:seal-database"
+
